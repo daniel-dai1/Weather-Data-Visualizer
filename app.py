@@ -4,45 +4,24 @@ import plotly.express as px
 import streamlit as st
 
 # ==========================================
-# 1. PAGE CONFIG & SESSION STATE FOR THEME
+# 1. PAGE CONFIG & DARK THEME CSS
 # ==========================================
 st.set_page_config(
     page_title="Climate Visualizer", layout="wide", initial_sidebar_state="expanded"
 )
 
-# Initialize dark mode state if not already present
-if "dark_mode" not in st.session_state:
-    st.session_state.dark_mode = False
+# Dark theme color variables
+bg_color = "#1E1E1E"
+card_bg = "#2D2D2D"
+text_color = "#F5F5F7"
+subtext_color = "#A1A1A6"
+border_color = "#3A3A3C"
+chart_grid = "#3A3A3C"
+accent_color = "#2997FF"
+btn_bg = "#3A3A3C"
+btn_text = "#FFFFFF"
 
-# Sidebar Toggle for Dark / Light Mode
-st.sidebar.header("Appearance")
-st.session_state.dark_mode = st.sidebar.toggle(
-    "Dark Mode", value=st.session_state.dark_mode
-)
-
-# Set dynamic CSS colors based on toggle state
-if st.session_state.dark_mode:
-    bg_color = "#1E1E1E"
-    card_bg = "#2D2D2D"
-    text_color = "#F5F5F7"
-    subtext_color = "#A1A1A6"
-    border_color = "#3A3A3C"
-    chart_grid = "#3A3A3C"
-    accent_color = "#2997FF"
-    btn_bg = "#3A3A3C"
-    btn_text = "#FFFFFF"
-else:
-    bg_color = "#FBFBFB"
-    card_bg = "#FFFFFF"
-    text_color = "#1D1D1F"
-    subtext_color = "#86868B"
-    border_color = "#E5E5E5"
-    chart_grid = "#E5E5E5"
-    accent_color = "#0071E3"
-    btn_bg = "#F2F2F7"
-    btn_text = "#1D1D1F"
-
-# Inject Apple-inspired clean CSS with dynamic theme variables
+# Inject custom Dark Mode CSS
 st.markdown(
     f"""
     <style>
@@ -53,7 +32,7 @@ st.markdown(
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }}
 
-        /* Headers */
+        /* Headers & general text */
         h1, h2, h3, h4, p, span {{
             color: {text_color} !important;
         }}
@@ -69,7 +48,7 @@ st.markdown(
             background-color: {card_bg};
             border-radius: 12px;
             padding: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             margin-bottom: 1.2rem;
             border: 1px solid {border_color};
         }}
@@ -87,7 +66,7 @@ st.markdown(
             color: {subtext_color} !important;
         }}
 
-        /* Fix Upload Button & Drag Drop Visibility */
+        /* File Uploader Visibility */
         [data-testid="stFileUploader"] section {{
             background-color: {card_bg} !important;
             border: 1px dashed {border_color} !important;
@@ -174,7 +153,6 @@ if df_raw is not None:
         )
 
         # Sidebar Filtering
-        st.sidebar.markdown("---")
         st.sidebar.header("Data Filter")
         st.sidebar.caption(f"Currently Showing: **{data_source_label}**")
 
