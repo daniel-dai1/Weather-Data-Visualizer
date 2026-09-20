@@ -1,3 +1,98 @@
+import os
+import pandas as pd
+import plotly.express as px
+import streamlit as st
+
+# ==========================================
+# 1. PAGE CONFIG & DARK THEME SETUP
+# ==========================================
+st.set_page_config(
+    page_title="Climate Visualizer", layout="wide", initial_sidebar_state="expanded"
+)
+
+# Dark theme color variables
+bg_color = "#1E1E1E"
+card_bg = "#2D2D2D"
+text_color = "#F5F5F7"
+subtext_color = "#A1A1A6"
+border_color = "#3A3A3C"
+chart_grid = "#3A3A3C"
+accent_color = "#2997FF"
+btn_bg = "#3A3A3C"
+btn_text = "#FFFFFF"
+
+# Inject custom Dark Mode CSS
+st.markdown(
+    f"""
+    <style>
+        /* Main background & typography */
+        [data-testid="stAppViewContainer"] {{
+            background-color: {bg_color};
+            color: {text_color};
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }}
+
+        /* Headers & general text */
+        h1, h2, h3, h4, p, span {{
+            color: {text_color} !important;
+        }}
+
+        /* Sidebar styling */
+        [data-testid="stSidebar"] {{
+            background-color: {card_bg};
+            border-right: 1px solid {border_color};
+        }}
+
+        /* Custom Cards */
+        .apple-card {{
+            background-color: {card_bg};
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            margin-bottom: 1.2rem;
+            border: 1px solid {border_color};
+        }}
+
+        /* Metric Styling */
+        [data-testid="stMetricValue"] {{
+            font-size: 2rem;
+            font-weight: 700;
+            color: {text_color} !important;
+        }}
+        [data-testid="stMetricLabel"] {{
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08rem;
+            color: {subtext_color} !important;
+        }}
+
+        /* File Uploader Visibility */
+        [data-testid="stFileUploader"] section {{
+            background-color: {card_bg} !important;
+            border: 1px dashed {border_color} !important;
+            border-radius: 12px;
+            color: {text_color} !important;
+        }}
+        [data-testid="stFileUploader"] section button {{
+            background-color: {btn_bg} !important;
+            color: {btn_text} !important;
+            border: 1px solid {border_color} !important;
+            border-radius: 8px !important;
+            font-weight: 500 !important;
+        }}
+        [data-testid="stFileUploaderDropzoneInstructions"] span {{
+            color: {subtext_color} !important;
+        }}
+
+        /* Hide Streamlit Clutter */
+        #MainMenu {{visibility: hidden;}}
+        footer {{visibility: hidden;}}
+        [data-testid="stHeader"] {{background: rgba(0,0,0,0);}}
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 # ==========================================
 # 2. MAIN HEADER & DATA INGESTION
 # ==========================================
