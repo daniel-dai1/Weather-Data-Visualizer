@@ -66,6 +66,18 @@ st.markdown(
             color: {subtext_color} !important;
         }}
 
+        /* Date range input contrast */
+        [data-testid="stDateInput"] input {{
+            background-color: {bg_color} !important;
+            color: {text_color} !important;
+            -webkit-text-fill-color: {text_color} !important;
+            border-color: {border_color} !important;
+        }}
+        [data-testid="stDateInput"] [data-baseweb="input"] {{
+            background-color: {bg_color} !important;
+            border-color: {border_color} !important;
+        }}
+
         /* File Uploader Visibility */
         [data-testid="stFileUploader"] section {{
             background-color: {card_bg} !important;
