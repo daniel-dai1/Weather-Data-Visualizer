@@ -67,19 +67,9 @@ st.markdown(
         }}
 
         /* Date range input contrast */
-        [data-testid="stDateInput"] [data-baseweb="input"] {{
-            color: {text_color} !important;
-        }}
-        [data-testid="stDateInput"] input,
-        [data-testid="stDateInput"] input::placeholder {{
-            background-color: {bg_color} !important;
-            color: {text_color} !important;
-            -webkit-text-fill-color: {text_color} !important;
-            border-color: {border_color} !important;
-        }}
-        [data-testid="stDateInput"] [data-baseweb="input"] {{
-            background-color: {bg_color} !important;
-            border-color: {border_color} !important;
+        [data-testid="stDateInputField"] span {{
+            color: #31333F !important;
+            -webkit-text-fill-color: #31333F !important;
         }}
 
         /* File Uploader Visibility */
